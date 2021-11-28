@@ -1,0 +1,5 @@
+name: Defender
+version: 1.0
+main: hszy.ydy.defender.Defender
+api-version: 1.16
+author: ydy_dreemurr
