@@ -28,10 +28,14 @@ public class MyListener implements Listener {
                     //举盾完成
                     if(((Player) event.getEntity()).isBlocking() == true)
                     {
-                        //反弹伤害
-                        ((Damageable) event.getDamager()).damage(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BLOCKING) * Defender.dmg, event.getEntity());
-                        //破盾伤害
-                        if(Defender.undfd != 0)event.setDamage(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BLOCKING) * Defender.undfd);
+                        //必须挡住伤害
+                        if (event.getFinalDamage() == 0) {
+                            //反弹伤害
+                            ((Damageable) event.getDamager()).damage(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BLOCKING) * Defender.dmg, event.getEntity());
+                            //破盾伤害
+                            if (Defender.undfd != 0)
+                                event.setDamage(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BLOCKING) * Defender.undfd);
+                        }
                     }
                 }
             }
